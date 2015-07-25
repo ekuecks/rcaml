@@ -10,6 +10,7 @@ module RCaml
     t_file = Tempfile.new(filename + ".tmp")
     var = nil
     @@in_match = false
+    @@nested = 0
     file.each_line do |line|
       line =~ /match (\w*) with/
       rest = false
@@ -45,14 +46,9 @@ module RCaml
         end
 
         if empty
-          if @@in_match
-            t_file.puts "end"
-          end
-          t_file.puts "if #{var}.is_a?(Array) && #{var}.empty?"
-          t_file.puts "return #{ret}"
-          @@in_match = true
-        end
-        if count > 0
+          print_array_case t_file, var, 0, locals, ret, rest
+          next
+        elsif count > 0
           print_array_case t_file, var, count, locals, ret, rest
         end
       else
@@ -119,6 +115,7 @@ module RCaml
           rest = true
           bind = $1
           locals += "#{bind} = #{var}[#{count}..-1]\n"
+          count += 1
         end
       end
       if count > 0
@@ -138,6 +135,7 @@ module RCaml
 
   private
   def self.print_array_case(t_file, var, count, locals, ret, rest)
+    ret.gsub!(/^\s*/, "")
     if @@in_match
       t_file.print "els"
     else

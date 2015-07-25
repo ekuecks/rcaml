@@ -2,11 +2,11 @@
 ##Usage
 ###rcaml_file.rb
 ```ruby
-def sum lst
+def sum(lst)
   match lst with
     [] -> 0
     [first] -> first
-    [fist] + rest -> first + sum rest
+    [first] + rest -> first + sum rest
   end
 end
 ```
@@ -29,14 +29,13 @@ RCaml::rcaml_to_ruby "rcaml_file.rb", "output.rb"
 ```
 ###output.rb
 ```ruby
-def sum lst
+def sum(lst)
   if lst.is_a?(Array) && lst.length == 0
     return 0
-  elsif
-    lst.is_a?(Array) && lst.length == 1
+  elsif lst.is_a?(Array) && lst.length == 1
     first = lst[0]
     return first
-  elsif lst.is_a?(Array) && lst.length >= 1
+  elsif lst.is_a?(Array) && lst.length >= 2
     first = lst[0]
     rest = lst[1..-1]
     return first + sum rest
@@ -53,14 +52,13 @@ RCaml::ocaml_to_ruby "ocaml_file.ml", "output.rb"
 ```
 ###output.rb
 ```ruby
-def sum lst
+def sum(lst)
   if lst.is_a?(Array) && lst.length == 0
     return 0
-  elsif
-    lst.is_a?(Array) && lst.length == 1
+  elsif lst.is_a?(Array) && lst.length == 1
     first = lst[0]
     return first
-  elsif lst.is_a?(Array) && lst.length >= 1
+  elsif lst.is_a?(Array) && lst.length >= 2
     first = lst[0]
     rest = lst[1..-1]
     return first + sum rest
