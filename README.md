@@ -21,12 +21,16 @@ let rec sum lst =
 ```
 
 ###rcaml_to_ruby
-Takes an 'rcaml' file and converts it to valid ruby
-Parameters: input_file, output_file=nil
-If you do not specify an output file, then it will overwrite the input file
+Takes an 'rcaml' file and converts it to valid ruby.
+
+Parameters: input_file, output_file=nil.
+
+If you do not specify an output file, then it will overwrite the input file.
+
 ```ruby
 RCaml::rcaml_to_ruby "rcaml_file.rb", "output.rb"
 ```
+
 ###output.rb
 ```ruby
 def sum(lst)
@@ -44,12 +48,16 @@ end
 ```
 
 ###ocaml_to_ruby
-Takes an ocaml file and converts it to valid ruby
-Parameters: input_file, output_file=nil
-If you do not specify an output file, then it will make a new ruby file with the same name as the input file but a .rb extension instead of .ml
+Takes an ocaml file and converts it to valid ruby.
+
+Parameters: input_file, output_file=nil.
+
+If you do not specify an output file, then it will make a new ruby file with the same name as the input file but a .rb extension instead of .ml.
+
 ```ruby
 RCaml::ocaml_to_ruby "ocaml_file.ml", "output.rb"
 ```
+
 ###output.rb
 ```ruby
 def sum(lst)
